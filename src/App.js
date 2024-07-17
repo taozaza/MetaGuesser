@@ -153,7 +153,7 @@ const PasswordProtectedContent = () => {
 
   const handlePasswordSubmit = (password) => {
     const passwordContentMap = {
-      Meta1: `ID : MetaGuesserExp1 <br/> Password : V8#pL9$r`,
+      Meta1: `ID : MetaGuesserExp1 <br/> Password : V8#pL9$r<br/>After got your Roblox account please login roblox website.<br/>Robloxアカウントを取得した後、Robloxウェブサイトにログインしてください。<a href="https://www.roblox.com/login" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: underline;">Roblox Website</a>`,
       Meta2: `ID : MetaGuesserExp2 <br/> Password : bR4@Qz5!`,
       Meta3: `ID : MetaGuesserExp3 <br/> Password : gH7&Tk2%`,
       Meta4: `ID : MetaGuesserExp4 <br/> Password : Y1#fUx8&`,
