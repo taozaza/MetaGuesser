@@ -2,3 +2,22 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-mode {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #fff;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}

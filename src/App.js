@@ -1,324 +1,371 @@
-import React, { useState } from "react";
-import { Lock, Unlock, Calendar, User } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Lock, X, Sun, Moon, Eye, EyeOff } from "lucide-react";
 import ac1Image from "./images/ac1.png";
 import ac2Image from "./images/ac2.png";
 import ac3Image from "./images/ac3.png";
 import ac4Image from "./images/ac4.png";
-import prt1Image from "./images/pret1.png";
 
-const ProtectedContent = ({ password, children }) => {
-  const [isUnlocked, setIsUnlocked] = useState(false);
-  const [inputPassword, setInputPassword] = useState("");
+// Updated mock data with partially protected content
+const blogData = [
+  {
+    id: 1,
+    title: "1. Introduction / イントロダクション",
+    content: `If you haven't watched the tutorial video before, please watch
+    this video.<br /><br />
+    もしこれまでにチュートリアルビデオを見たことがなければ、このビデオをご覧ください。<br /><br />
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/kEmzmEp0OZE"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe><br /><br />
+(Subtitle EN/JP)<br /><br />
+After you have watched the video, please fill out the consent
+                form.<br /><br />
+                ビデオを見た後、同意書にご記入ください。<br /><br />
+<a href="https://www.surveymonkey.com/r/2B66F6N" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: underline;">Consent Form</a>`,
+    isPartiallyProtected: false,
+  },
+  {
+    id: 2,
+    title: "2. Assigning Roblox account / Roblox アカウントの割り当て",
+    content: `Input your assigned number to get Roblox account.<br/><br/>割り当てられた番号を入力してRobloxアカウントを取得してください。`,
+    isPartiallyProtected: true,
+  },
+  {
+    id: 3,
+    title: "3. Pre-game-test / ゲームプレイ前のテスト",
+    content: `Please wait until we tell you to do the pre-test and enter this
+    link.<br/>{{protected:74225:<a href="https://www.surveymonkey.com/r/QGTGSL8" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: underline;">Pre-game-test</a>}}事前テストを行い、このリンクに入るようお伝えするまでお待ちください。<br/>`,
+    isPartiallyProtected: true,
+  },
+  {
+    id: 4,
+    title: "4. Let’s play Roblox",
+    content: `<p>
+    After everyone has finished the pre-test, we will create
+    breakout sessions in Zoom. While we are doing this, please use
+    the given Roblox account to login to
+    <span style={{ color: "red", fontWeight: "bold" }}>
+    Roblox website
+    </span>
+    .
+  </p>
+  <p>
+    全員が事前テストを終えた後、Zoomでブレイクアウトセッションを作成します。その間に、与えられたRobloxアカウントを使用してRoblox
+    <span style={{ color: "red", fontWeight: "bold" }}>
+      ウェブサイト
+    </span>
+    にログインしてください。
+  </p>`,
+    isPartiallyProtected: false,
+  },
+  {
+    id: 5,
+    title: "5. Post-game-test / ゲームプレイ後のテスト",
+    content: `Please wait until we tell you to do the post-test and enter this
+    link.<br/>{{protected:87992:<a href="https://www.surveymonkey.com/r/Q68FLKP" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: underline;">Post-game-test</a>}}以下のゲームプレイ後のテストを7分30秒以内に行ってください。<br/>`,
+    isPartiallyProtected: true,
+  },
+  {
+    id: 6,
+    title: "6. Questionnaire / アンケート",
+    content: `After you finish questionnaire feel free to leave. Thank you so
+    much for your time.<br/>{{protected:92154:<a href="https://www.surveymonkey.com/r/XWH3ZC6" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: underline;">Questionnaire</a>}}アンケートが終わりましたら、お帰りいただいて結構です。お時間をいただき、誠にありがとうございました。<br/>`,
+    isPartiallyProtected: true,
+  },
+];
 
-  const handleUnlock = () => {
-    if (inputPassword === password) {
-      setIsUnlocked(true);
-    } else {
-      alert("Incorrect password");
+const Toast = ({ message, isVisible, onClose }) => {
+  useEffect(() => {
+    if (isVisible) {
+      const timer = setTimeout(() => {
+        onClose();
+      }, 3000);
+      return () => clearTimeout(timer);
     }
-  };
+  }, [isVisible, onClose]);
 
-  if (isUnlocked) {
-    return <div className="mt-6">{children}</div>;
-  }
+  if (!isVisible) return null;
 
   return (
-    <div className="mt-6 p-6 bg-gray-100 rounded-lg shadow-md">
-      <div className="flex items-center space-x-3">
-        <Lock className="text-gray-600" />
-        <input
-          type="password"
-          value={inputPassword}
-          onChange={(e) => setInputPassword(e.target.value)}
-          className="flex-grow border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Enter password"
-        />
-        <button
-          onClick={handleUnlock}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out"
-        >
-          Unlock
-        </button>
-      </div>
+    <div className="fixed bottom-4 right-4 bg-red-500 dark:bg-red-600 text-white px-4 py-2 rounded shadow-lg flex items-center">
+      <span>{message}</span>
+      <button onClick={onClose} className="ml-2">
+        <X size={18} />
+      </button>
     </div>
   );
 };
 
-const BlogPost = ({
-  title,
-  author,
-  date,
-  content,
-  protectedContent,
-  password,
-}) => {
+const Header = ({ darkMode, toggleDarkMode }) => (
+  <header className="bg-blue-600 dark:bg-blue-800 text-white p-4 flex justify-between items-center">
+    <h1 className="text-2xl font-bold">Roblox Experiment</h1>
+    <button
+      onClick={toggleDarkMode}
+      className="p-2 rounded-full hover:bg-blue-700 dark:hover:bg-blue-900"
+    >
+      {darkMode ? <Sun size={24} /> : <Moon size={24} />}
+    </button>
+  </header>
+);
+
+const Footer = () => (
+  <footer className="bg-gray-200 dark:bg-gray-800 dark:text-white p-4 mt-8 text-center">
+    <p></p>
+  </footer>
+);
+
+const PasswordPrompt = ({ onSubmit }) => {
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(password);
+    setPassword("");
+  };
+
   return (
-    <article className="mb-12 bg-white rounded-lg shadow-md overflow-hidden">
-      <div className="p-6">
-        <h2 className="text-2xl font-bold mb-2">{title}</h2>
-        <div className="prose max-w-none">{content}</div>
-        {protectedContent && (
-          <ProtectedContent password={password}>
-            <div className="prose max-w-none mt-4">{protectedContent}</div>
-          </ProtectedContent>
-        )}
-      </div>
-    </article>
+    <form onSubmit={handleSubmit} className="mt-2">
+      <input
+        type="text"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Enter password"
+        className="border rounded px-2 py-1 mr-2 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+      />
+      <button
+        type="submit"
+        className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
+      >
+        Unlock
+      </button>
+    </form>
   );
 };
 
-const App = () => {
+const PasswordProtectedContent = () => {
+  const [enteredPassword, setEnteredPassword] = useState("");
+  const [content, setContent] = useState("");
+
+  const handlePasswordSubmit = (password) => {
+    const passwordContentMap = {
+      Meta1: `ID : MetaGuesserExp1 <br/> Password : V8#pL9$r`,
+      Meta2: `ID : MetaGuesserExp2 <br/> Password : bR4@Qz5!`,
+      Meta3: `ID : MetaGuesserExp3 <br/> Password : gH7&Tk2%`,
+      Meta4: `ID : MetaGuesserExp4 <br/> Password : Y1#fUx8&`,
+      Meta5: `ID : MetaGuesserExp5 <br/> Password : D9@kMz6!`,
+      Meta6: `ID : MetaGuesserExp6 <br/> Password : qW3*Cv4#`,
+      Meta7: `ID : MetaGuesserExp7 <br/> Password : L5!jHs7@`,
+      Meta8: `ID : MetaGuesserExp8 <br/> Password : P2$gBt1&`,
+      Meta9: `ID : MetaGuesserExp9 <br/> Password : PineApple`,
+      Meta10: `ID : MetaGuesserExp10 <br/> Password : F4!mDj6@`,
+      Meta11: `ID : MetaGuesserExp11 <br/> Password : zV7$Qw2%`,
+      Meta12: `ID : MetaGuesserExp12 <br/> Password : T5#kHl9&`,
+      Meta13: `ID : MetaGuesserExp13 <br/> Password : rY1!Pn8@`,
+      Meta14: `ID : MetaGuesserExp14 <br/> Password : N3$gWz4%`,
+      Meta15: `ID : MetaGuesserExp15 <br/> Password : bM6@Jt5#`,
+      Meta16: `ID : MetaGuesserExp16 <br/> Password : H2!kXv7&`,
+      Meta17: `ID : MetaGuesserExp17 <br/> Password : C9%qPl1$`,
+      Meta18: `ID : MetaGuesserExp18 <br/> Password : G4@jTy6#`,
+      Meta19: `ID : MetaGuesserExp19 <br/> Password : L5#dMw3&`,
+      Meta20: `ID : MetaGuesserExp20 <br/> Password : pR8$Fz7!`,
+
+      // Add more passwords and corresponding content as needed
+    };
+
+    if (passwordContentMap[password]) {
+      setContent(passwordContentMap[password]);
+    } else {
+      setContent("Incorrect password. Please try again.");
+    }
+  };
+
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <header className="bg-white shadow-md">
-        <div className="container mx-auto px-4 py-6">
-          <h1 className="text-3xl font-bold text-gray-800">
-            Roblox Experiment
-          </h1>
-        </div>
-      </header>
-      <main className="container mx-auto px-4 py-8">
-        <BlogPost
-          title="1. Introduction / イントロダクション"
-          content={
-            <>
-              <p>
-                If you haven't watched the tutorial video before, please watch
-                this video.
-              </p>
-              <p>
-                もしこれまでにチュートリアルビデオを見たことがなければ、このビデオをご覧ください。
-              </p>
-              <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/kEmzmEp0OZE"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-              <p>(Subtitle EN/JP)</p>
-              <p>
-                After you have watched the video, please fill out the consent
-                form.
-              </p>
-              <p>ビデオを見た後、同意書にご記入ください。</p>
-              <p>
-                <a
-                  href="https://www.surveymonkey.com/r/8SL83VQ"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "blue", textDecoration: "underline" }}
-                >
-                  https://www.surveymonkey.com/r/8SL83VQ
-                </a>
-              </p>
-            </>
-          }
-        />
+    <div className="dark:text-gray-300">
+      <p>
+        Input your assigned number to get Roblox account.
+        <br />
+        <br />
+        割り当てられた番号を入力してRobloxアカウントを取得してください。
+      </p>
+      <PasswordPrompt onSubmit={handlePasswordSubmit} />
+      {content && (
+        <div className="mt-4" dangerouslySetInnerHTML={{ __html: content }} />
+      )}
+    </div>
+  );
+};
 
-        <BlogPost
-          title="2. Assigning Roblox account / Roblox アカウントの割り当て"
-          content={
-            <>
-              <p>
-                After clicking the account distribution link, please select your
-                account and press next.
-              </p>
-              <p>
-                アカウント配布リンクをクリックした後、アカウントを選択して次へを押してください。
-              </p>
-              <img
-                src={ac1Image}
-                alt="Account assignment"
-                style={{ maxWidth: "100%", height: "auto" }}
-              />
-              <p>
-                After pressing next, ID and Password will show up. Please{" "}
-                <span style={{ color: "red", fontWeight: "bold" }}>
-                  remember
-                </span>{" "}
-                it (copy/screenshot) before pressing{" "}
-                <span style={{ color: "red", fontWeight: "bold" }}>submit</span>
-                .
-              </p>
-              <p>
-                次へを押した後、IDとパスワードが表示されます。提出を押す前に、それを
-                <span style={{ color: "red", fontWeight: "bold" }}>
-                  覚えておいてください
-                </span>
-                （コピー/スクリーンショット）。
-              </p>
-              <img
-                src={ac2Image}
-                alt="Account assignment2"
-                style={{ maxWidth: "100%", height: "auto" }}
-              />
-              <p>After pressing submit, the result will show up.</p>
-              <p>提出を押した後、結果が表示されます。</p>
-              <p>
-                This is{" "}
-                <span style={{ color: "red", fontWeight: "bold" }}>
-                  Success.
-                </span>
-                You can use this account.
-              </p>
-              <p>
-                これは
-                <span style={{ color: "red", fontWeight: "bold" }}>成功</span>
-                です。このアカウントを使用できます。
-              </p>
-              <img
-                src={ac3Image}
-                alt="Account assignment3"
-                style={{ maxWidth: "100%", height: "auto" }}
-              />
-              <p>
-                This is{" "}
-                <span style={{ color: "red", fontWeight: "bold" }}>failed</span>
-                . Please press back and choose a new account.
-              </p>
-              <p>
-                これは
-                <span style={{ color: "red", fontWeight: "bold" }}>失敗</span>
-                です。戻るボタンを押して新しいアカウントを選択してください。
-              </p>
-              <img
-                src={ac4Image}
-                alt="Account assignment4"
-                style={{ maxWidth: "100%", height: "auto" }}
-              />
-            </>
-          }
-          protectedContent={
-            <>
-              <p>
-                <a
-                  href="https://form.everestwebdeals.co/?form=6af8673cdfd7033add8c09e352b00ed8"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "blue", textDecoration: "underline" }}
-                >
-                  Get Roblox account / Robloxアカウントを取得する
-                </a>
-              </p>
-              <p>You can login into Roblox website after got Roblox account.</p>
-              <p>
-                Robloxアカウントを取得した後、Robloxウェブサイトにログインできます。
-              </p>
-            </>
-          }
-          password="73326"
-        />
-        <BlogPost
-          title="3. Pre-game-test / ゲームプレイ前のテスト"
-          content={
-            <>
-              <p>
-                Please wait until we tell you to do the pre-test and enter this
-                link.
-              </p>
-              <p>
-                事前テストを行い、このリンクに入るようお伝えするまでお待ちください。
-              </p>
-            </>
-          }
-          protectedContent={
-            <>
-              <p>
-                <a
-                  href="https://www.surveymonkey.com/r/GVM7XX5"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "blue", textDecoration: "underline" }}
-                >
-                  Pre-game-test / ゲームプレイ前のテスト
-                </a>
-              </p>
-            </>
-          }
-          password="24538"
-        />
+const ProtectedContent = ({ content, isUnlocked, onPasswordSubmit }) => {
+  const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
 
-        <BlogPost
-          title="4. Let’s play Roblox"
-          content={
-            <>
-              <p>
-                After everyone has finished the pre-test, we will create
-                breakout sessions in Zoom. While we are doing this, please use
-                the given Roblox account to log in to Roblox{" "}
-                <span style={{ color: "red", fontWeight: "bold" }}>
-                  website
-                </span>
-                .
-              </p>
-              <p>
-                全員が事前テストを終えた後、Zoomでブレイクアウトセッションを作成します。その間に、与えられたRobloxアカウントを使用してRoblox
-                <span style={{ color: "red", fontWeight: "bold" }}>
-                  ウェブサイト
-                </span>
-                にログインしてください。
-              </p>
-            </>
-          }
-        />
+  if (isUnlocked) {
+    return (
+      <span
+        className="text-green-600 dark:text-green-400"
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
+    );
+  }
 
-        <BlogPost
-          title="5. Post-game-test / ゲームプレイ後のテスト"
-          content={
-            <>
-              <p>
-                Please wait until we tell you to do the post-test and enter this
-                link.
-              </p>
-              <p>以下のゲームプレイ後のテストを7分30秒以内に行ってください</p>
-            </>
-          }
-          protectedContent={
-            <p>
-              <a
-                href="https://www.surveymonkey.com/r/GVTJYRK"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "blue", textDecoration: "underline" }}
-              >
-                Pre-game-test / ゲームプレイ前のテスト
-              </a>
-            </p>
-          }
-          password="98953"
-        />
+  return (
+    <span className="inline-block">
+      <button
+        onClick={() => setShowPasswordPrompt(!showPasswordPrompt)}
+        className="text-blue-500 dark:text-blue-400 hover:underline flex items-center"
+      >
+        {showPasswordPrompt ? (
+          <EyeOff size={16} className="mr-1" />
+        ) : (
+          <Eye size={16} className="mr-1" />
+        )}
+        {showPasswordPrompt ? "Hide" : "Show"} protected content
+      </button>
+      {showPasswordPrompt && <PasswordPrompt onSubmit={onPasswordSubmit} />}
+    </span>
+  );
+};
 
-        <BlogPost
-          title="6. Questionnaire / アンケート"
-          content={
-            <>
-              <p>
-                After you finish questionnaire feel free to leave. Thank you so
-                much for your time.
-              </p>
-              <p>
-                アンケートが終わりましたら、お帰りいただいて結構です。お時間をいただき、誠にありがとうございました。
-              </p>
-            </>
-          }
-          protectedContent={
-            <p>
-              <a
-                href="https://www.surveymonkey.com/r/8SVNWQC "
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "blue", textDecoration: "underline" }}
-              >
-                Pre-game-test / ゲームプレイ前のテスト
-              </a>
-            </p>
-          }
-          password="43522"
+const ContentPart = ({ part, onIncorrectPassword }) => {
+  const [unlockedPasswords, setUnlockedPasswords] = useState(new Set());
+
+  const handlePasswordSubmit = (password) => {
+    const protectedRegex = /{{protected:([^:]+):([^}]+)}}/g;
+    let match;
+    let correctPassword = false;
+
+    while ((match = protectedRegex.exec(part.content)) !== null) {
+      if (password === match[1]) {
+        setUnlockedPasswords((prev) => new Set(prev).add(password));
+        correctPassword = true;
+        break;
+      }
+    }
+
+    if (!correctPassword) {
+      onIncorrectPassword();
+    }
+  };
+
+  const renderContent = () => {
+    if (!part.isPartiallyProtected) {
+      return (
+        <div
+          className="dark:text-gray-300"
+          dangerouslySetInnerHTML={{ __html: part.content }}
         />
+      );
+    } else if (part.id === 2) {
+      return <PasswordProtectedContent />;
+    }
+
+    const protectedRegex = /{{protected:([^:]+):([^}]+)}}/g;
+    const segments = [];
+    let lastIndex = 0;
+    let match;
+
+    while ((match = protectedRegex.exec(part.content)) !== null) {
+      segments.push(part.content.slice(lastIndex, match.index));
+      segments.push(
+        <ProtectedContent
+          key={match.index}
+          content={match[2]}
+          isUnlocked={unlockedPasswords.has(match[1])}
+          onPasswordSubmit={handlePasswordSubmit}
+        />
+      );
+      lastIndex = protectedRegex.lastIndex;
+    }
+
+    segments.push(part.content.slice(lastIndex));
+
+    return segments.map((segment, index) => {
+      if (typeof segment === "string") {
+        return (
+          <div
+            key={index}
+            className="dark:text-gray-300"
+            dangerouslySetInnerHTML={{ __html: segment }}
+          />
+        );
+      }
+      return segment;
+    });
+  };
+
+  return (
+    <div className="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+      <h2 className="text-xl font-semibold mb-4 dark:text-white">
+        {part.title}
+      </h2>
+      {renderContent()}
+    </div>
+  );
+};
+
+const BlogPost = ({ onIncorrectPassword }) => (
+  <article className="max-w-3xl mx-auto mt-8">
+    {blogData.map((part) => (
+      <ContentPart
+        key={part.id}
+        part={part}
+        onIncorrectPassword={onIncorrectPassword}
+      />
+    ))}
+  </article>
+);
+
+const App = () => {
+  const [toastVisible, setToastVisible] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const prefersDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    setDarkMode(prefersDarkMode);
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = (e) => setDarkMode(e.matches);
+    mediaQuery.addListener(handleChange);
+
+    return () => mediaQuery.removeListener(handleChange);
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle("dark", darkMode);
+  }, [darkMode]);
+
+  const showToast = () => {
+    setToastVisible(true);
+  };
+
+  const hideToast = () => {
+    setToastVisible(false);
+  };
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  return (
+    <div
+      className={`min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col transition-colors duration-200`}
+    >
+      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <BlogPost onIncorrectPassword={showToast} />
       </main>
+      <Footer />
+      <Toast
+        message="Incorrect password. Please try again."
+        isVisible={toastVisible}
+        onClose={hideToast}
+      />
     </div>
   );
 };
