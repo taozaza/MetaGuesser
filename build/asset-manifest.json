@@ -1,13 +1,10 @@
 {
   "files": {
-    "main.js": "/MetaGuesser/static/js/main.13988d02.js",
-    "static/media/ac1.png": "/MetaGuesser/static/media/ac1.c126bae63843088ca081.png",
-    "static/media/ac4.png": "/MetaGuesser/static/media/ac4.3948d617b1fad46859bc.png",
-    "static/media/ac3.png": "/MetaGuesser/static/media/ac3.0489eaa32a9d17dc5347.png",
+    "main.js": "/MetaGuesser/static/js/main.827ae98d.js",
     "index.html": "/MetaGuesser/index.html",
-    "main.13988d02.js.map": "/MetaGuesser/static/js/main.13988d02.js.map"
+    "main.827ae98d.js.map": "/MetaGuesser/static/js/main.827ae98d.js.map"
   },
   "entrypoints": [
-    "static/js/main.13988d02.js"
+    "static/js/main.827ae98d.js"
   ]
 }
