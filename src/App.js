@@ -32,7 +32,7 @@ After you have watched the video, please fill out the consent
   {
     id: 2,
     title: "2. Assigning Roblox account / Roblox アカウントの割り当て",
-    content: `Input your assigned number to get Roblox account.<br/><br/>割り当てられた番号を入力してRobloxアカウントを取得してください。`,
+    content: ` Please use this URL to get your Roblox account.<br/>{{protected:48821:<a href="https://b995-133-19-43-10.ngrok-free.app/" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: underline;">Get Roblox Account / Robloxアカウントを取得する</a>}}このURLを使用してRobloxアカウントを取得してください。`,
     isPartiallyProtected: true,
   },
   {
@@ -187,10 +187,10 @@ const PasswordProtectedContent = () => {
   return (
     <div className="dark:text-gray-300">
       <p>
-        Input your assigned number to get Roblox account.
+      Please use this URL to get your Roblox account.
         <br />
         <br />
-        割り当てられた番号を入力してRobloxアカウントを取得してください。
+        このURLを使用してRobloxアカウントを取得してください。
       </p>
       <PasswordPrompt onSubmit={handlePasswordSubmit} />
       {content && (
@@ -259,8 +259,6 @@ const ContentPart = ({ part, onIncorrectPassword }) => {
           dangerouslySetInnerHTML={{ __html: part.content }}
         />
       );
-    } else if (part.id === 2) {
-      return <PasswordProtectedContent />;
     }
 
     const protectedRegex = /{{protected:([^:]+):([^}]+)}}/g;
