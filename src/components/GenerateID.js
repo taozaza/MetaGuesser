@@ -46,7 +46,7 @@ const GenerateID = () => {
 			>
 				Get Unique ID / 固有IDを取得
 			</button>}
-			{(isButtonDisabled && (!uniqueId && !uniquePassword)) && <p className='dark:text-white'>読み込み中...</p>}
+			{(isButtonDisabled && (!uniqueId && !uniquePassword)) && <p className='dark:text-white'>Loading / 読み込み中...</p>}
 			<p>
 				{error ? (
 					`Error: ${error}`
