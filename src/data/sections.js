@@ -50,11 +50,24 @@ After you have watched the video, please fill out the consent
     .
   </p>
   <p>
-    全員が事前テストを終えた後、Zoomでブレイクアウトセッションを作成します。その間に、与えられたRobloxアカウントを使用して<span class="font-bold dark:text-red-300 text-red-600">Roblox
+    <br/>全員が事前テストを終えた後、Zoomでブレイクアウトセッションを作成します。その間に、与えられたRobloxアカウントを使用して<span class="font-bold dark:text-red-300 text-red-600">Roblox
       ウェブサイト
     </span>
     にログインしてください。
-  </p>`,
+  </p>
+  <p>
+  <br/>After joining the game, please don't do anything yet and <span class="font-bold dark:text-red-300 text-red-600">wait</span> until there are the same number of students in the Roblox server and the breakout session.<br/>
+  </p>
+  <p>
+  <br/>ゲームに参加した後、まだ何もせず、Robloxサーバーとブレイクアウトセッションの学生の数が同じになるまで<span class="font-bold dark:text-red-300 text-red-600">待ってください。</span>
+  </p>
+  <p>
+  <br/>After there are the same number of students in the Roblox server and the breakout session please walk to blue circle and hold "E" button to ready and playing the game for 10 matchs (each matchs have maximum of 4 round).</span>
+  </p>
+  <p>
+  <br/>Robloxサーバーとブレイクアウトセッションの学生数が同じになったら、青い円に歩いて行き、「E」ボタンを押し続けて準備し、10試合（各試合は最大4ラウンド）ゲームをプレイしてください。</span>
+  </p>
+  `,
 		isPartiallyProtected: false,
 	},
 	{
