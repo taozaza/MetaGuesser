@@ -44,14 +44,13 @@ After you have watched the video, please fill out the consent
     After everyone has finished the pre-test, we will create
     breakout sessions in Zoom. While we are doing this, please use
     the given Roblox account to login to
-    <span style={{ color: "red", fontWeight: "bold" }}>
+    <span class="font-bold dark:text-red-300 text-red-600">
     Roblox website
     </span>
     .
   </p>
   <p>
-    全員が事前テストを終えた後、Zoomでブレイクアウトセッションを作成します。その間に、与えられたRobloxアカウントを使用してRoblox
-    <span style={{ color: "red", fontWeight: "bold" }}>
+    全員が事前テストを終えた後、Zoomでブレイクアウトセッションを作成します。その間に、与えられたRobloxアカウントを使用して<span class="font-bold dark:text-red-300 text-red-600">Roblox
       ウェブサイト
     </span>
     にログインしてください。
