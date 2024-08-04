@@ -22,7 +22,7 @@ After you have watched the video, please fill out the consent
                 form.<br /><br />
                 ビデオを見た後、同意書にご記入ください。<br /><br />
                 หลังจากที่คุณดูวิดีโอเสร็จโปรดกรอกแบบฟอร์มการยินยอม<br /><br />
-<a href="https://www.surveymonkey.com/r/2B66F6N" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: underline;">Consent Form</a>`,
+<a href="https://www.surveymonkey.com/r/NZXVNPL" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: underline;">Consent Form</a>`,
 		isPartiallyProtected: false,
 	},
 	{
@@ -36,7 +36,7 @@ After you have watched the video, please fill out the consent
 		id: 3,
 		title: '3. Pre-game-test / ゲームプレイ前のテスト  / การทดสอบก่อนเล่นเกม',
 		content: `Please wait until we tell you to do the pre-test and enter this
-    link.<br/>{{protected:74225:<a href="https://www.surveymonkey.com/r/QGTGSL8" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: underline;">Pre-game-test</a>}}事前テストを行い、このリンクに入るようお伝えするまでお待ちください。<br/> / โปรดรอจนกว่าเราจะบอกให้ทำการทดสอบก่อนเล่นเกมและเข้าลิงก์นี้<br/>`,
+    link.<br/>{{protected:74225:<a href="https://www.surveymonkey.com/r/W5QGQV3" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: underline;">Pre-game-test</a>}}事前テストを行い、このリンクに入るようお伝えするまでお待ちください。<br/> / โปรดรอจนกว่าเราจะบอกให้ทำการทดสอบก่อนเล่นเกมและเข้าลิงก์นี้<br/>`,
 		isPartiallyProtected: true,
 	},
 	{
@@ -85,14 +85,14 @@ After you have watched the video, please fill out the consent
 		id: 5,
 		title: '5. Post-game-test / ゲームプレイ後のテスト / การทดสอบหลังเล่นเกม',
 		content: `Please wait until we tell you to do the post-test and enter this
-    link.<br/>{{protected:87992:<a href="https://www.surveymonkey.com/r/Q68FLKP" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: underline;">Post-game-test</a>}}以下のゲームプレイ後のテストを7分30秒以内に行ってください。<br/>/ โปรดรอจนกว่าเราจะบอกให้ทำการทดสอบหลังเล่นเกมและเข้าลิงก์นี้<br/>`,
+    link.<br/>{{protected:87992:<a href="https://www.surveymonkey.com/r/W52P6KN" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: underline;">Post-game-test</a>}}以下のゲームプレイ後のテストを7分30秒以内に行ってください。<br/>/ โปรดรอจนกว่าเราจะบอกให้ทำการทดสอบหลังเล่นเกมและเข้าลิงก์นี้<br/>`,
 		isPartiallyProtected: true,
 	},
 	{
 		id: 6,
 		title: '6. Questionnaire / アンケート / แบบสอบถาม',
 		content: `After you finish questionnaire feel free to leave. Thank you so
-    much for your time.<br/>{{protected:92154:<a href="https://www.surveymonkey.com/r/XWH3ZC6" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: underline;">Questionnaire</a>}}アンケートが終わりましたら、お帰りいただいて結構です。お時間をいただき、誠にありがとうございました。<br/> / หลังจากที่คุณทำแบบสอบถามเสร็จโปรดออกจากห้องได้เลย ขอบคุณมากที่ให้เวลา<br/>`,
+    much for your time.<br/>{{protected:92154:<a href="https://www.surveymonkey.com/r/NZLMFLC" target="_blank" rel="noopener noreferrer" style="color: red; text-decoration: underline;">Questionnaire</a>}}アンケートが終わりましたら、お帰りいただいて結構です。お時間をいただき、誠にありがとうございました。<br/> / หลังจากที่คุณทำแบบสอบถามเสร็จโปรดออกจากห้องได้เลย ขอบคุณมากที่ให้เวลา<br/>`,
 		isPartiallyProtected: true,
 	},
 ];
