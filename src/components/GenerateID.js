@@ -22,7 +22,7 @@ const GenerateID = () => {
 	const getUniqueId = async () => {
 		setIsButtonDisabled(true);
 		try {
-			const response = await fetch('https://entrepreneurs-rick-una-certainly.trycloudflare.com/api/get-id');
+			const response = await fetch('https://prostate-puppy-scott-astrology.trycloudflare.com/api/get-id');
 			if (!response.ok) {
 				const errorData = await response.json();
 				throw new Error(errorData.detail || 'Failed to fetch ID');
