@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/MetaGuesser/static/js/main.789f03ba.js",
+    "main.js": "/MetaGuesser/static/js/main.c484027e.js",
     "index.html": "/MetaGuesser/index.html",
-    "main.789f03ba.js.map": "/MetaGuesser/static/js/main.789f03ba.js.map"
+    "main.c484027e.js.map": "/MetaGuesser/static/js/main.c484027e.js.map"
   },
   "entrypoints": [
-    "static/js/main.789f03ba.js"
+    "static/js/main.c484027e.js"
   ]
 }
